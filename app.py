@@ -15,7 +15,7 @@ def home():
             <title>Company Website</title>
         </head>
         <body>
-            <h1>Welcome to Our Company Website</h1>
+            <h1>Welcome to Our New Updated Company Website</h1>
             <p>This application is running on Kubernetes.</p>
 
             <h2>Application Information</h2>
