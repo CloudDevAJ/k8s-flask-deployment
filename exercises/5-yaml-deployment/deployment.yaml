@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: student-website
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: student-website
+
+  template:
+    metadata:
+      labels:
+        app: student-website
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+
+          ports:
+            - containerPort: 80
