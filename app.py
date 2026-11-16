@@ -1,9 +1,9 @@
-
 from flask import Flask, jsonify
 import os
 import socket
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def home():
@@ -29,21 +29,23 @@ def home():
     </html>
     """
 
+
 @app.route("/health")
 def health():
-    return jsonify({
-        "status": "healthy",
-        "application": "company-website"
-    })
+    return jsonify({"status": "healthy", "application": "company-website"})
+
 
 @app.route("/info")
 def info():
-    return jsonify({
-        "application": "Company Website",
-        "technology": "Python Flask",
-        "hostname": socket.gethostname(),
-        "environment": os.getenv("APP_ENV", "development")
-    })
+    return jsonify(
+        {
+            "application": "Company Website",
+            "technology": "Python Flask",
+            "hostname": socket.gethostname(),
+            "environment": os.getenv("APP_ENV", "development"),
+        }
+    )
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
