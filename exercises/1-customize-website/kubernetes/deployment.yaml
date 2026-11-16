@@ -1,0 +1,27 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudtech-website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudtech-website
+  template:
+    metadata:
+      labels:
+        app: cloudtech-website
+    spec:
+      containers:
+        - name: cloudtech-website
+          image: cloudtech-website:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
