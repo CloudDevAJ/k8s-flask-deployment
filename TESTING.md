@@ -268,6 +268,37 @@ kubectl get pods -l app=company-website
 kubectl scale deployment company-website --replicas=1
 kubectl get pods -l app=company-website
 ```
+## Exercise 4 – Kubernetes Self-Healing
+
+**Application:** `company-website`
+
+**Objective:** Test Kubernetes' ability to maintain three replicas when application Pods are deleted.
+
+**Commands:**
+
+```bash
+kubectl scale deployment company-website --replicas=3
+kubectl get pods -l app=company-website
+
+kubectl delete pod <pod-name>
+kubectl get pods -l app=company-website -w
+
+kubectl delete pod <pod-name-1> <pod-name-2>
+kubectl get pods -l app=company-website -w
+```
+
+**Results:**
+
+| Test | Pods Deleted | Final Ready Replicas |
+|---|---:|---:|
+| Single Pod failure | 1 | 3/3 |
+| Multiple Pod failure | 2 | 3/3 |
+
+Kubernetes automatically created replacement Pods to maintain the desired replica count.
+
+**Status:** Passed
+
+**Key Learning:** Kubernetes Deployments use ReplicaSets to maintain the desired number of Pods. When a managed Pod is deleted, a replacement is created automatically.
 
 **Expected results:**
 
